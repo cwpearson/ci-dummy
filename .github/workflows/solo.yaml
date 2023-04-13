@@ -2,12 +2,20 @@
 
 name: solo
 
-# workflow runs whenever a PR against develop is opened or labeled
+# What types of PR things cause this to run:
+#   labeled:     a label is assigned 
+#   unlaeled:    a label is removed
+#   opened:      the PR is created
+#   synchronize: the head branch is updated
+#   reopened:    a previously closed PR is reopened
 on:
   pull_request:
     types:
       - labeled
+      - unlabeled
       - opened
+      - synchronize
+      - reopened
     branches: 
       - develop
 
