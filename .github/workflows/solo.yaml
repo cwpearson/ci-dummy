@@ -34,7 +34,7 @@ jobs:
               'X-GitHub-Api-Version': '2022-11-28'
             }
           })
-          const var valid_user = (response.status == "200")
+          const valid_user = (response.status == "200")
           if (valid_user) {
             console.log("${{ github.actor }} is a collaborator")
             if ("${{ github.event.action }}" === "opened") {
