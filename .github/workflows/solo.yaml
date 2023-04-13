@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Install
-      run: npm install octokit@2.0.14
+      run: npm install octokit@v2.0.14
     - name: Verification
       uses: actions/github-script@v6.4.0
       with:
