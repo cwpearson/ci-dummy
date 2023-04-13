@@ -9,7 +9,7 @@ on:
       - labeled
       - opened
     branches: 
-      -develop
+      - develop
 
 
   # Allows you to run this workflow manually from the Actions tab
