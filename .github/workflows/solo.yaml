@@ -22,6 +22,8 @@ jobs:
         script: |
           // Octokit.js
           // https://github.com/octokit/core.js#readme
+          const { Octokit } = require("@octokit/action");
+          
           const octokit = new Octokit({
             auth: '${{ secrets.CWPEARSON_CIDUMMY_METADATAREAD }}'
           })
