@@ -16,8 +16,9 @@ jobs:
   workflow-handler:
     runs-on: ubuntu-22.04
     steps:
+    # https://github.com/octokit/action.js/
     - name: Install
-      run: npm install octokit@v2.0.14
+      run: npm install @octokit/action@v5.0.2
     - name: Verification
       uses: actions/github-script@v6.4.0
       with:
