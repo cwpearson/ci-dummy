@@ -34,8 +34,8 @@ jobs:
           if ("${{ github.event.action }}" === "opened" && valid_user) {
             console.log("Starting job when PR opened by ${{ github.actor }}")
           }
-          else if ("${{ github.event.action }}" === "labeled" && "${{ github.event.label.name }}" == "RUN AUTOTESTER" && valid_user) {
-            console.log("starting job on PR labeled by ${{ github.actor }}")
+          else if ("${{ github.event.action }}" === "labeled" && "${{ github.event.label.name }}" == "RUN TESTS" && valid_user) {
+            console.log("starting job on PR labeled \"${{ github.event.label.name }}\" by ${{ github.actor }}")
           }
           else {
             core.setFailed("not running job: ${{ github.actor }} is not a collaborator")
