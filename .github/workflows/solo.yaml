@@ -19,9 +19,10 @@ on:
     branches: 
       - develop
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  check-tags:
+
+  # Skip the action if the 'AT: WIP' label is attached
+  check-wip:
     runs-on: ubuntu-22.04
     if: "!contains(github.event.pull_request.labels.*.name, 'AT: WIP')"
     steps:
@@ -31,7 +32,7 @@ jobs:
           
 
   configure_build_test:
-    needs: check-tags
+    needs: check-wip
     runs-on: self-hosted
 
     steps:
