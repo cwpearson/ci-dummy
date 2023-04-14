@@ -4,7 +4,7 @@ on:
 jobs:
   fail_if_wip:
     runs-on: ubuntu-22.04
-    if: "!contains(github.event.pull_request.labels.*.name, 'AT: WIP')"
+    if: "contains(github.event.pull_request.labels.*.name, 'AT: WIP')"
     steps:
       - run: |
-          true
+          exit 1
