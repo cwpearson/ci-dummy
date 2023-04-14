@@ -3,8 +3,13 @@ on:
 
 jobs:
   fail_if_wip:
-    runs-on: ubuntu-22.04
-    if: "contains(github.event.pull_request.labels.*.name, 'AT: WIP')"
+    runs-on: ubuntu-latest
     steps:
-      - run: |
-          exit 1
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            octokit.rest.issues.getLabel({
+              owner,
+             repo,
+             'AT: WIP',
+            });
