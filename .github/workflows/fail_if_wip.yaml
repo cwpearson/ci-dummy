@@ -8,30 +8,11 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log(context);
             for (key in context.payload.pull_request.labels) {
-              const label = context.payload.pull_request.labels[key]
-              console.log(label)
+              const label = context.payload.pull_request.labels[key];
               if (label.name === 'AT: WIP') {
-                core.setFailed("AT: WIP tag is set")
+                core.setFailed("AT: WIP tag is set");
               } else {
-                console.log("saw label", label.name)
+                console.log("saw label", label.name);
               }
             }
-            
-            const response = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.number,
-            });
-            console.log(response);
-            
-            for (label in response.data.labels) {
-              console.log(label)
-              if (label.name === 'AT: WIP') {
-                core.setFailed("AT: WIP tag is set")
-              } else {
-                console.log("saw label", label.name)
-              }
-            }
-
