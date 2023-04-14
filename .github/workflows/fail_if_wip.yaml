@@ -13,6 +13,7 @@ jobs:
               repo: context.repo.repo,
               name: 'AT: WIP',
             });
+            console.log(response);
             if (response.status == 200) {
               core.setFailed("AT: WIP tag is set")
             }
