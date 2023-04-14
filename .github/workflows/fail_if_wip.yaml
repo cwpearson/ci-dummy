@@ -9,9 +9,9 @@ jobs:
         with:
           script: |
             const response = octokit.rest.issues.getLabel({
-              owner,
-              repo,
-              'AT: WIP'
+              owner: owner,
+              repo: repo,
+              name: 'AT: WIP',
             });
             if (reponse.code == 200) {
               return true;
