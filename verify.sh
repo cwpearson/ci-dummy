@@ -5,7 +5,15 @@
 # the Authorization value is a fine-grained personal access token with repository metadata read access
 # this will return 204 for a collaborator, or 404 otherwise
 
+# Variables for this script: https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
+
 REPO_SLUG=cwpearson/ci-dummy
+
+echo GITHUB_EVENT_NAME="$GITHUB_EVENT_NAME"
+if [[ -f "$GITHUB_EVENT_PATH" ]]; then
+  echo "GITHUB_EVENT_PATH contents:"
+  cat "$GITHUB_EVENT_PATH"
+fi
 
 # -w tells bash to print the http response code after the response
 # -s means silent
