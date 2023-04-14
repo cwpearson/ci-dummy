@@ -9,7 +9,8 @@ jobs:
         with:
           script: |
             console.log(context);
-            for (label in context.payload.pull_request.labels) {
+            for (key in context.payload.pull_request.labels) {
+              const label = context.payload.pull_request.labels[label]
               console.log(label)
               if (label.name === 'AT: WIP') {
                 core.setFailed("AT: WIP tag is set")
@@ -25,7 +26,8 @@ jobs:
             });
             console.log(response);
             
-            for (label in response.labels) {
+            for (label in response.data.labels) {
+              console.log(label)
               if (label.name === 'AT: WIP') {
                 core.setFailed("AT: WIP tag is set")
               } else {
