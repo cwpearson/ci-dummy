@@ -12,7 +12,7 @@ jobs:
             const response = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.pull.number,
+              pull_number: context.pull_request.number,
             });
             console.log(response);
             
