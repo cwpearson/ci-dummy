@@ -16,7 +16,7 @@ on:
 jobs:
   # immediately fail if work-in-progress label is set
   fail_if_wip:
-    uses: ./.github/workflows/fail_if_wip.yml
+    uses: ./.github/workflows/fail_if_wip.yaml
 
   # do the actual work
   configure_build_test:
