@@ -37,7 +37,6 @@ jobs:
 
   # remove any retest label as long as we're not WIP
   remove_retest_label:
-    needs: [fail_if_wip]
     runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/remove_retest_label.yaml
