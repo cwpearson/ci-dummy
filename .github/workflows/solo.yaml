@@ -35,7 +35,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-  # remove any retest label as long as we're not WIP
+  # always remove any retest label since we're retesting
   remove_retest_label:
     runs-on: ubuntu-latest
     steps:
