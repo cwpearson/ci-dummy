@@ -8,12 +8,17 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const response = await github.rest.issues.getLabel({
+            console.log(context);
+            const response = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              name: 'AT: WIP',
+              pull_number: context.pull.number,
             });
             console.log(response);
-            if (response.status == 200) {
-              core.setFailed("AT: WIP tag is set")
+            
+            for (label in response.labels) {
+              if (label.name === 'AT: WIP') {
+                core.setFailed("AT: WIP tag is set")
+              }
             }
+
