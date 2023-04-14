@@ -9,6 +9,15 @@ jobs:
         with:
           script: |
             console.log(context);
+            for (label in context.pull_request.labels) {
+              console.log(label)
+              if (label.name === 'AT: WIP') {
+                core.setFailed("AT: WIP tag is set")
+              } else {
+                console.log("saw label", label.name)
+              }
+            }
+            
             const response = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
