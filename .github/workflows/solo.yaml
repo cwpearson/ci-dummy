@@ -14,14 +14,14 @@ on:
       - develop # only run for PRs against develop
 
 jobs:
+  fail_if_wip:
+    uses: ./.github/workflows/fail_if_wip.yaml
+
   # do the actual work
   configure_build_test:
     needs: fail_if_wip
     runs-on: self-hosted
     steps:
-      # this step fails if PR is tagged WIP, otherwise it's skipped
-      - uses: ./.github/workflows/fail_if_wip.yaml
-    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
@@ -37,6 +37,7 @@ jobs:
 
   # always remove any retest label since we're retesting
   remove_retest_label:
+    needs: fail_if_wip
     runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/remove_retest_label.yaml
