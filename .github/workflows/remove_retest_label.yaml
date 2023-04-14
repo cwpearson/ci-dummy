@@ -1,0 +1,10 @@
+on:
+  workflow_call:
+
+jobs:
+  remove_retest_label:
+    runs-on: ubuntu-latest
+    with:
+      script: |
+        const core = require('@actions/core');
+        const github = require('@actions/github');
