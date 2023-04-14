@@ -2,36 +2,23 @@
 
 name: solo
 
-# What types of PR things cause this to run:
-#   labeled:     a label is assigned 
-#   unlaeled:    a label is removed
-#   opened:      the PR is created
-#   synchronize: the head branch is updated
-#   reopened:    a previously closed PR is reopened
 on:
   pull_request:
     types:
-      - labeled
-      - unlabeled
-      - opened
-      - reopened
+      - labeled     # a label is assigned 
+      - unlabeled   # a label is removed (e.g. 'AT: WIP' is removed)
+      - opened      # the PR is created
+      - reopened    # a previously closed PR is reopened
+      # - synchronize # the head branch is updated
     branches: 
-      - develop
+      - develop # only run for PRs against develop
 
 jobs:
-
-  # Skip the action if the 'AT: WIP' label is attached
-  check-wip:
-    runs-on: ubuntu-22.04
-    if: "!contains(github.event.pull_request.labels.*.name, 'AT: WIP')"
-    steps:
-    - name: Verification
-      run: |
-        true
-          
+  fail_if_wip:
+    uses: ./.github/workflows/fail_if_wip.yml
 
   configure_build_test:
-    needs: check-wip
+    needs: fail_if_wip
     runs-on: self-hosted
 
     steps:
